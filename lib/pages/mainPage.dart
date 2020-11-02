@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:jackpot/service/datetime.dart';
 import 'package:jackpot/service/weather.dart';
 import '../style.dart' as style;
 import '../databox.dart';
@@ -12,10 +13,14 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int waterlevel = 33;
+  int temp = 26;
+  int humidity = 81;
+  int dust = 13;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: style.backgroundColor,
+      backgroundColor: style.backgroundSkyBlue,
       appBar: AppBar(
         title: Text(
           'Jackpot',
@@ -157,7 +162,7 @@ class _MainPageState extends State<MainPage> {
                           height: 3,
                         ),
                         Text(
-                          ' 9월 27일 일요일 오후 22:20',
+                          DateString(),
                           style: TextStyle(color: Color(0xff7c7c7c)),
                         ),
                       ],
@@ -173,6 +178,7 @@ class _MainPageState extends State<MainPage> {
                           size: 45,
                           color: Colors.black,
                         ),
+                        SizedBox(width: 10,),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -183,14 +189,13 @@ class _MainPageState extends State<MainPage> {
                           ],
                         ),
                         SizedBox(width: 5,),
-/*
                         Container(
                           padding: EdgeInsets.only(top:11,left: 10,right: 10,bottom: 11),
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
-                                List: [Color(0xffe2f7fe), Color(0xfff8faeb)]),
+                                colors: [Color(0xffe2f7fe), Color(0xfff8faeb)]),
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                           ),
                           child: Text(
@@ -199,7 +204,7 @@ class _MainPageState extends State<MainPage> {
                             style: TextStyle(color: style.greyText,fontSize: 14),
                           ),
                         ),
- */
+
                       ],
                     ),
                     SizedBox(height: 15,),
@@ -239,32 +244,43 @@ class _MainPageState extends State<MainPage> {
                   Column(children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Icon(Icons.wb_cloudy,color: style.mainBlue,),
+                          Image.asset('images/Co2.png',width: 30.0,
+                          fit: BoxFit.fill,
+                        ),
                         SizedBox(width: 5,),
                         Text('미세먼지',style: TextStyle(fontSize: 12,color: style.greyText),),
                       ],
                     ),
-                    NumberData(13,'㎍/m³')
+                    SizedBox(height: 3,),
+                    NumberData(dust,'㎍/m³')
                   ],),
                   Column(children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Icon(Icons.hourglass_empty,color: style.mainBlue,),
+                        Image.asset('images/temp.png',height: 25,
+                          fit: BoxFit.fill,
+                        ),
+                        SizedBox(width: 5,),
                         SizedBox(width: 5,),
                         Text('온도',style: TextStyle(fontSize: 12,color: style.greyText),),
                       ],
                     ),
-                    NumberData(26,'℃')
+                    SizedBox(height: 3,),
+                    NumberData(temp,'℃')
                   ],),
                   Column(children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Icon(Icons.bubble_chart,color: style.mainBlue,),
+                        Image.asset('images/waterdrop.png',height:25,
+                          fit: BoxFit.fill,
+                        ),
+                        SizedBox(width: 5,),
                         SizedBox(width: 5,),
                         Text('습도',style: TextStyle(fontSize: 12,color: style.greyText),),
                       ],
                     ),
-                    NumberData(81,'%'),
+                    SizedBox(height: 3,),
+                    NumberData(humidity,'%'),
                   ],),
                 ],
               ),
@@ -275,11 +291,16 @@ class _MainPageState extends State<MainPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(Icons.bubble_chart,color: style.mainBlue,),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Image.asset('images/wave.png',height:15,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                   Text('수위')
                 ],
               ),
-              NumberData(33,'%'),
+              NumberData(waterlevel,'%'),
               SizedBox(height: 5,),
               Text('물탱크에 물이 얼마 남지 않았어요. 물을 충전해주세요.',style: TextStyle(fontSize: 11,fontWeight: FontWeight.bold),)
             ],

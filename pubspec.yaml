@@ -22,7 +22,12 @@ dependencies:
   dio: ^3.0.10
   xml: ^4.5.1
   geolocator: ^6.0.0
+  intl: ^0.16.1
+  path_provider: ^1.6.22
   flappy_search_bar: ^1.7.2
+  syncfusion_flutter_sliders: ^18.3.44-beta
+  fl_chart: ^0.10.0
+  sqflite: ^1.3.1
   flutter:
     sdk: flutter
 
@@ -49,9 +54,16 @@ flutter:
 
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
+  assets:
+    - images/Co2.png
+    - images/fan.png
+    - images/light.png
+    - images/switch.png
+    - images/temp.png
+    - images/waterdrop.png
+    - images/wave.png
+    - images/drug.png
+    - images/plants.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

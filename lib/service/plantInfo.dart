@@ -29,14 +29,21 @@ Future<List<PlantInfo>> searchPlantList(String text) async
 }
 
 //get plant detail Info and Image
-void getPlantDetail(PlantInfo plant) async{
+Future<PlantInfo> getPlantDetail(PlantInfo plant) async {
   String Planturl = "http://api.nongsaro.go.kr/service/garden/gardenDtl";
-  String requestUrl = Planturl+"?apiKey="+plantApiKey+"&cntntsNo="+plant.plantCode;
+  String requestUrl = Planturl + "?apiKey=" + plantApiKey + "&cntntsNo=" +
+      plant.plantCode;
   Response response = await Dio().get(requestUrl);
   var xmlDoc = XmlDocument.parse(response.toString());
   var itemList = xmlDoc.findAllElements('item');
+  for(var item in itemList){
+    String fncltyInfo = item.findElements('fncltyInfo').single.text;
+    plant.fncltyInfo  = fncltyInfo;
+    print(fncltyInfo);
+  }
   //parse information
-  String imageURl = "http://www.nongsaro.go.kr/"+plant.rtnFileCours+"/"+plant.rtnStreFileNm;
+  print(requestUrl);
+  return plant;
 }
 
 class PlantInfo
@@ -45,6 +52,7 @@ class PlantInfo
   String plantCode;
   String rtnFileCours;
   String rtnStreFileNm;
+  String fncltyInfo;
 
   PlantInfo(String subject, String number,String cour,String Nm){
     this.plantName = subject;

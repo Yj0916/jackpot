@@ -26,6 +26,7 @@ IconData iconReturn(int weatherConditionCode)
 {
   print('find Icon');
   print(weatherConditionCode);
+  print(weatherConditionCode);
   IconData icon;
   int codeData = weatherConditionCode~/100;
   if(weatherConditionCode == 800){
@@ -33,7 +34,7 @@ IconData iconReturn(int weatherConditionCode)
   }
   else{
     print('not sunny');
-    switch(weatherConditionCode){
+    switch(codeData){
       //Group 2xx: Thunderstorm
       case 2:
         icon = WeatherIcons.thunderstorm;
@@ -45,6 +46,7 @@ IconData iconReturn(int weatherConditionCode)
       case 5:
         //Group 5xx: Rain
         icon = WeatherIcons.rain;
+        print('rain');
         break;
       case 6:
         //Group 6xx: Snow
@@ -59,6 +61,7 @@ IconData iconReturn(int weatherConditionCode)
         icon = WeatherIcons.cloudy;
         break;
       default:
+        icon = Icons.warning;
         break;
     }
   }

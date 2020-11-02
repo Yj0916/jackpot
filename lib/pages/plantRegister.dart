@@ -1,6 +1,7 @@
 import 'package:flappy_search_bar/search_bar_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jackpot/pages/plantRegister2.dart';
 import 'package:jackpot/service/plantInfo.dart';
 import 'package:jackpot/style.dart' as style;
 import 'package:flappy_search_bar/flappy_search_bar.dart';
@@ -43,6 +44,7 @@ class _PlantRegisterState extends State<PlantRegister> {
             Container(
               height: 300,
               child: SearchBar<PlantInfo>(
+                cancellationWidget: Icon(Icons.close),
                   onSearch: searchPlantList,
                   searchBarStyle: SearchBarStyle(
                     backgroundColor: Colors.white,
@@ -50,7 +52,21 @@ class _PlantRegisterState extends State<PlantRegister> {
                   iconActiveColor: style.mainBlue,
                   hintText: '식물 이름을 입력해 주세요',
                   placeHolder: Center(
-                    child: Text('식물 관리를 위해서 내 식물을 등록해 주세요.'),
+                    child: Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset('images/plants.png', width: 100,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Text('식물 관리를 위해서 내 식물을 등록해 주세요!')
+                        ],
+                      ),
+                    ),
                   ),
                   minimumChars: 1,
                   onItemFound: (PlantInfo plant, int index) {
@@ -65,9 +81,8 @@ class _PlantRegisterState extends State<PlantRegister> {
                         width: 80,
                         height: 80,
                       ),
-                      onTap: () {
-                        getPlantDetail(plant);
-                        setState(() {});
+                      onTap: (){
+                        Navigator.pushNamed(context, '/select',arguments: plant);
                       },
                     );
                   }),
@@ -77,4 +92,5 @@ class _PlantRegisterState extends State<PlantRegister> {
       ),
     );
   }
+
 }
