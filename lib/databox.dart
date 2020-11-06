@@ -23,7 +23,7 @@ Widget DataBox(Column data,double top,double bottom) {
 }
 
 
-Widget StatusDataBox(IconData icon,String description) {
+Widget StatusDataBox(IconData icon,String description, Function() onTap) {
 
   return GestureDetector(
     child: Container(
@@ -50,7 +50,7 @@ Widget StatusDataBox(IconData icon,String description) {
           ],
         )
     ),
-    onTap:null,
+    onTap:onTap,
   );
 }
 

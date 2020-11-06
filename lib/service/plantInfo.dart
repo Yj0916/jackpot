@@ -33,6 +33,7 @@ Future<PlantInfo> getPlantDetail(PlantInfo plant) async {
   String Planturl = "http://api.nongsaro.go.kr/service/garden/gardenDtl";
   String requestUrl = Planturl + "?apiKey=" + plantApiKey + "&cntntsNo=" +
       plant.plantCode;
+  print(requestUrl);
   Response response = await Dio().get(requestUrl);
   var xmlDoc = XmlDocument.parse(response.toString());
   var itemList = xmlDoc.findAllElements('item');

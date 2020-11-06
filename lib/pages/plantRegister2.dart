@@ -29,7 +29,7 @@ class _SelectedWidgetState extends State<SelectedWidget> {
           selectedItemColor: style.mainBlue,
           unselectedItemColor: Colors.black26,
           onTap: null,
-          currentIndex: 0,
+          currentIndex: 2,
           items: [
             new BottomNavigationBarItem(
                 icon: Icon(Icons.home,size: 30,),
@@ -48,7 +48,7 @@ class _SelectedWidgetState extends State<SelectedWidget> {
                 title: Text('')
             ),
             new BottomNavigationBarItem(
-                icon: Icon(Icons.insert_chart,size: 30,),
+                icon: Icon(Icons.settings,size: 30,),
                 title: Text('')
             )
           ]),

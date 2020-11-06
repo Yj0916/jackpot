@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jackpot/pages/graphPage.dart';
+import 'package:jackpot/pages/indexPage.dart';
 import 'package:jackpot/pages/plantRegister.dart';
 import 'package:jackpot/pages/plantRegister2.dart';
 import 'package:jackpot/pages/settingPage.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'jackPot',
-      home: PlantRegister(),
+      home: IndexPage(),
       routes: {
         '/search' : (context)=>PlantRegister(),
         '/select': (context) => SelectedWidget(),

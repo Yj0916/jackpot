@@ -28,6 +28,8 @@ dependencies:
   syncfusion_flutter_sliders: ^18.3.44-beta
   fl_chart: ^0.10.0
   sqflite: ^1.3.1
+  flutter_ble_lib: ^2.3.0
+  permission_handler: ^5.0.1+1
   flutter:
     sdk: flutter
 
