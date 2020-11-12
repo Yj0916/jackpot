@@ -49,6 +49,7 @@ Future<PlantInfo> getPlantDetail(PlantInfo plant) async {
 
 class PlantInfo
 {
+  bool saved;
   String plantName;
   String plantCode;
   String rtnFileCours;

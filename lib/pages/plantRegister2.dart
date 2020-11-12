@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jackpot/service/firebase.dart';
 import 'package:jackpot/service/plantInfo.dart';
 import 'package:jackpot/style.dart' as style;
+import 'package:rflutter_alert/rflutter_alert.dart';
+
+import 'indexPage.dart';
 
 class SelectedWidget extends StatefulWidget {
   @override
@@ -153,7 +157,10 @@ class _SelectedWidgetState extends State<SelectedWidget> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: null,
+                          onTap: (){
+                            plantSave(snapshot.data);
+                            Navigator.pushNamed(context, '/index');
+                          },
                           child: Container(
                             padding: EdgeInsets.only(top:15,bottom:15,right: 50,left: 50),
                             decoration: BoxDecoration(

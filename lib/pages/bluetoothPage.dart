@@ -198,7 +198,7 @@ class _BluetoothPageState extends State<BluetoothPage> {
       });
     });
   }
-  
+
 
   Widget build(BuildContext context) {
     return Scaffold(

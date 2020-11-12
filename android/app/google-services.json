@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "49377090998",
+    "firebase_url": "https://jackpot-78b48.firebaseio.com",
+    "project_id": "jackpot-78b48",
+    "storage_bucket": "jackpot-78b48.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49377090998:android:6c31efffb591df56bbb517",
+        "android_client_info": {
+          "package_name": "com.example.jackpot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49377090998-o06i1ka430gmrmq43mi2caufmfjuv24e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACr5GSJlk80Hyi-iJwqHdiRidceGH1sHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49377090998-o06i1ka430gmrmq43mi2caufmfjuv24e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

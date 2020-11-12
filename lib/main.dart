@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/search' : (context)=>PlantRegister(),
         '/select': (context) => SelectedWidget(),
+        '/index': (context) => IndexPage(),
       },
     );
   }

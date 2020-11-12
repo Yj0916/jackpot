@@ -6,7 +6,6 @@ import 'package:jackpot/service/weather.dart';
 import '../style.dart' as style;
 import '../databox.dart';
 import 'package:weather_icons/weather_icons.dart';
-
 import 'bluetoothPage.dart';
 import 'graphPage.dart';
 

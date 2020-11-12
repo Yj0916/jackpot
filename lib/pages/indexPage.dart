@@ -23,6 +23,12 @@ class _IndexPageState extends State<IndexPage> {
   @override
   final List<Widget> _children = [MainPage(), CameraPage(),PlantRegister(),GraphPage(),SettingPage()];
   Widget build(BuildContext context) {
+/*
+    int args = ModalRoute.of(context).settings.arguments;
+    if(args != null){
+      _currentIndex = args;
+    }
+ */
     return Scaffold(
       appBar: AppBar(
         title: Text(
