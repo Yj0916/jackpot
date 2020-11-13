@@ -94,13 +94,20 @@ void plantRemove() async{
       .document("PlantInfo").delete();
 }
 
-/*
+Future<String> imageLinkRetrieve(int plantNumber) async{
+  final databaseReference = Firestore.instance;
+  var future = await databaseReference.collection("PlantData").document("PlantImage").get();
+  if(!future.exists){
+    return null;
+  }
+  else{
+    String path = future['path'+plantNumber.toString()];
+    return path;
+  }
+}
+
+void RemoveImage(int plantNumber) async{
+  final databaseReference = Firestore.instance;
   await databaseReference.collection("PlantData")
-      .document("PlantInfo").setData({
-    'plantName': info.plantName,
-    'plantCode': info.plantCode,
-    'rtnFileCours': info.rtnFileCours,
-    'rtnStreFileNm': info.rtnStreFileNm,
-    'fncltyInfo': info.fncltyInfo,
-  });
- */
+      .document("PlantImage").updateData({'path'+plantNumber.toString() : null});
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jackpot/main.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 Color mainBlue = Color(0xff6ab4ef);
 Color backgroundColor =  Color(0xfff1f2f2);
@@ -15,3 +16,5 @@ TextStyle settingButtonTextStyle = TextStyle(color: Colors.white,fontSize: 20,fo
 TextStyle iconText = TextStyle(color: Color(0xff949494),fontWeight: FontWeight.bold,fontSize: 12);
 TextStyle infoText = TextStyle(color: Color(0xff949494), fontSize: 15,height: 1.3);
 TextStyle blueText = TextStyle(color: mainBlue,fontWeight: FontWeight.bold,fontSize: 20);
+
+AlertStyle alertStyle = AlertStyle();

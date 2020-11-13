@@ -186,7 +186,14 @@ class _SettingPageState extends State<SettingPage> {
                 GestureDetector(
                   onTap:(){
                     settingSave(waterLevel,fanLevel,ledLevel);
-                    Alert(context: context, title: "수정완료", desc: "식물 정보가 수정 완료되었습니다.").show();
+                    Alert(context: context, title: "수정완료", desc: "식물 정보가 수정 완료되었습니다.",buttons: [        DialogButton(
+                      child: Text(
+                        "확인",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      onPressed: () => Navigator.pop(context),
+                      color: style.buttonColor,
+                    )]).show();
                   },
                   child: Container(
                     padding: EdgeInsets.only(top:15,bottom:15),

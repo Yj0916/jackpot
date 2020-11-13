@@ -193,7 +193,3 @@ class _PlantRegisterState extends State<PlantRegister> {
   }
 
 }
-
-/*
-
- */
