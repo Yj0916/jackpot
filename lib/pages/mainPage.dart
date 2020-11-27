@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:jackpot/service/datetime.dart';
+import 'package:jackpot/service/data.dart';
 import 'package:jackpot/service/weather.dart';
 import '../style.dart' as style;
 import '../databox.dart';
@@ -225,89 +226,212 @@ class _MainPageState extends State<MainPage> {
             }
           },
         ),
-        DataBox(Column(
-          children: <Widget>[
-            Text('JackPot 상태',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-            SizedBox(height: 15,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Column(children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Image.asset('images/Co2.png',width: 30.0,
-                        fit: BoxFit.fill,
-                      ),
-                      SizedBox(width: 5,),
-                      Text('미세먼지',style: TextStyle(fontSize: 12,color: style.greyText),),
-                    ],
-                  ),
-                  SizedBox(height: 3,),
-                  NumberData(dust,'㎍/m³')
-                ],),
-                Column(children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Image.asset('images/temp.png',height: 25,
-                        fit: BoxFit.fill,
-                      ),
-                      SizedBox(width: 5,),
-                      SizedBox(width: 5,),
-                      Text('온도',style: TextStyle(fontSize: 12,color: style.greyText),),
-                    ],
-                  ),
-                  SizedBox(height: 3,),
-                  NumberData(temp,'℃')
-                ],),
-                Column(children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Image.asset('images/waterdrop.png',height:25,
-                        fit: BoxFit.fill,
-                      ),
-                      SizedBox(width: 5,),
-                      SizedBox(width: 5,),
-                      Text('습도',style: TextStyle(fontSize: 12,color: style.greyText),),
-                    ],
-                  ),
-                  SizedBox(height: 3,),
-                  NumberData(humidity,'%'),
-                ],),
-              ],
-            ),
-          ],
-        ),7.5,7.5),
-        DataBox(Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Image.asset('images/wave.png',height:15,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Text('수위')
-              ],
-            ),
-            NumberData(waterlevel,'%'),
-            SizedBox(height: 5,),
-            Text('물탱크에 물이 얼마 남지 않았어요. 물을 충전해주세요.',style: TextStyle(fontSize: 11,fontWeight: FontWeight.bold),)
-          ],
-        ),7.5,7.5),
+        FutureBuilder(
+            future: statusRetrieve(),
+            builder: (BuildContext context, AsyncSnapshot snapshot){
+              if(snapshot.data == null){
+                return DataBox(Column(
+                  children: <Widget>[
+                    Text('JackPot 상태',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                    SizedBox(height: 15,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Column(children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Image.asset('images/Co2.png',width: 30.0,
+                                fit: BoxFit.fill,
+                              ),
+                              SizedBox(width: 5,),
+                              Text('미세먼지',style: TextStyle(fontSize: 12,color: style.greyText),),
+                            ],
+                          ),
+                          SizedBox(height: 3,),
+                          NumberData(dust,'㎍/m³')
+                        ],),
+                        Column(children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Image.asset('images/temp.png',height: 25,
+                                fit: BoxFit.fill,
+                              ),
+                              SizedBox(width: 5,),
+                              SizedBox(width: 5,),
+                              Text('온도',style: TextStyle(fontSize: 12,color: style.greyText),),
+                            ],
+                          ),
+                          SizedBox(height: 3,),
+                          NumberData(temp,'℃')
+                        ],),
+                        Column(children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Image.asset('images/waterdrop.png',height:25,
+                                fit: BoxFit.fill,
+                              ),
+                              SizedBox(width: 5,),
+                              SizedBox(width: 5,),
+                              Text('습도',style: TextStyle(fontSize: 12,color: style.greyText),),
+                            ],
+                          ),
+                          SizedBox(height: 3,),
+                          NumberData(humidity,'%'),
+                        ],),
+                      ],
+                    ),
+                  ],
+                ),7.5,7.5);
+              }
+              else{
+                waterlevel =  snapshot.data['waterLevel'];
+                humidity = snapshot.data['humidity'];
+                temp = snapshot.data['temperature'];
+                return DataBox(Column(
+                  children: <Widget>[
+                    Text('JackPot 상태',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                    SizedBox(height: 15,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Column(children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Image.asset('images/Co2.png',width: 30.0,
+                                fit: BoxFit.fill,
+                              ),
+                              SizedBox(width: 5,),
+                              Text('미세먼지',style: TextStyle(fontSize: 12,color: style.greyText),),
+                            ],
+                          ),
+                          SizedBox(height: 3,),
+                          NumberData(dust,'㎍/m³')
+                        ],),
+                        Column(children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Image.asset('images/temp.png',height: 25,
+                                fit: BoxFit.fill,
+                              ),
+                              SizedBox(width: 5,),
+                              SizedBox(width: 5,),
+                              Text('온도',style: TextStyle(fontSize: 12,color: style.greyText),),
+                            ],
+                          ),
+                          SizedBox(height: 3,),
+                          NumberData(temp,'℃')
+                        ],),
+                        Column(children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Image.asset('images/waterdrop.png',height:25,
+                                fit: BoxFit.fill,
+                              ),
+                              SizedBox(width: 5,),
+                              SizedBox(width: 5,),
+                              Text('습도',style: TextStyle(fontSize: 12,color: style.greyText),),
+                            ],
+                          ),
+                          SizedBox(height: 3,),
+                          NumberData(humidity,'%'),
+                        ],),
+                      ],
+                    ),
+                  ],
+                ),7.5,7.5);
+              }
+        }),
+        FutureBuilder(
+            future: statusRetrieve(),
+            builder: (BuildContext context, AsyncSnapshot snapshot){
+              if(snapshot.data == null){
+                return DataBox(Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Image.asset('images/wave.png',height:15,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        Text('수위')
+                      ],
+                    ),
+                    NumberData(waterlevel,'%'),
+                    SizedBox(height: 5,),
+                    Text('물탱크에 물이 얼마 남지 않았어요. 물을 충전해주세요.',style: TextStyle(fontSize: 11,fontWeight: FontWeight.bold),)
+                  ],
+                ),7.5,7.5);
+              }
+              else{
+                waterlevel =  snapshot.data['waterLevel'];
+                humidity = snapshot.data['humidity'];
+                temp = snapshot.data['temperature'];
+
+                return DataBox(Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Image.asset('images/wave.png',height:15,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        Text('수위')
+                      ],
+                    ),
+                    NumberData(waterlevel,'%'),
+                    SizedBox(height: 5,),
+                    Text(waterText(waterlevel),style: TextStyle(fontSize: 11,fontWeight: FontWeight.bold),)
+                  ],
+                ),7.5,7.5);
+              }
+            }),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            StatusDataBox(Icons.toys, '쿨링 팬',(){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => BluetoothPage()),);
-    }),
-            StatusDataBox(Icons.lightbulb_outline, 'LED 조명',null),
-            StatusDataBox(Icons.child_care, '영양제',null),
-            StatusDataBox(Icons.flash_on,   '전원',null),
+            StatusDataBox(Icons.toys, '쿨링 팬',0),
+            StatusDataBox(Icons.lightbulb_outline, 'LED 조명',1),
+            StatusDataBox(Icons.child_care, '영양제',2),
+            StatusDataBox(Icons.flash_on,   '전원',3),
           ],
         ),
       ],
+    );
+  }
+
+  Widget StatusDataBox(IconData icon,String description,int idx) {
+
+    return GestureDetector(
+      onTap: null,
+      child: Container(
+          width: 90,
+          //margin: EdgeInsets.only(top:7.5),
+          padding: EdgeInsets.only(top: 18,bottom: 18,),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 1,
+                blurRadius: 1,
+                offset: Offset(0, 2), // changes position of shadow
+              ),
+            ],
+          ),
+          child: Column(
+            children: <Widget>[
+              Icon(icon,color: style.mainBlue,size: 40,),
+              SizedBox(height: 5,),
+              Text(description,style: TextStyle(color: style.mainBlue,fontSize: 10),),
+            ],
+          )
+      ),
     );
   }
 }

@@ -23,36 +23,7 @@ Widget DataBox(Column data,double top,double bottom) {
 }
 
 
-Widget StatusDataBox(IconData icon,String description, Function() onTap) {
 
-  return GestureDetector(
-    child: Container(
-        width: 90,
-        //margin: EdgeInsets.only(top:7.5),
-        padding: EdgeInsets.only(top: 18,bottom: 18,),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: Offset(0, 2), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Column(
-          children: <Widget>[
-            Icon(icon,color: style.mainBlue,size: 40,),
-            SizedBox(height: 5,),
-            Text(description,style: TextStyle(color: style.mainBlue,fontSize: 10),),
-          ],
-        )
-    ),
-    onTap:onTap,
-  );
-}
 
 Widget NumberData(int number, String unit)
 {

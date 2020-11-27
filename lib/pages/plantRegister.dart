@@ -2,7 +2,7 @@ import 'package:flappy_search_bar/search_bar_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jackpot/pages/plantRegister2.dart';
-import 'package:jackpot/service/firebase.dart';
+import 'package:jackpot/service/data.dart';
 import 'package:jackpot/service/plantInfo.dart';
 import 'package:jackpot/style.dart' as style;
 import 'package:flappy_search_bar/flappy_search_bar.dart';

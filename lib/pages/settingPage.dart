@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:jackpot/style.dart' as style;
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
-import 'package:jackpot/service/firebase.dart';
+import 'package:jackpot/service/data.dart';
 
 class SettingPage extends StatefulWidget {
   @override

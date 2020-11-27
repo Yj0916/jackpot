@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jackpot/service/firebase.dart';
+import 'package:jackpot/service/data.dart';
 import 'package:jackpot/service/plantInfo.dart';
 import 'package:jackpot/style.dart' as style;
 import 'package:rflutter_alert/rflutter_alert.dart';
