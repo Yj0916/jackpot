@@ -55,7 +55,7 @@ class _CameraPageState extends State<CameraPage> {
                   },
                   child: Container(
                     padding: EdgeInsets.only(top: 170,bottom: 170),
-                    margin: EdgeInsets.all(10),
+                    margin: EdgeInsets.only(bottom: 10,top:20,left:12,right: 12),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(10)),

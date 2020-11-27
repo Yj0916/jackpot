@@ -20,6 +20,7 @@ class _MainPageState extends State<MainPage> {
   int temp = 26;
   int humidity = 81;
   int dust = 13;
+  List<bool> isbuttonTouched = [false,false,false,false];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -391,7 +392,11 @@ class _MainPageState extends State<MainPage> {
                 ),7.5,7.5);
               }
             }),
-        Row(
+        FutureBuilder(
+    future: onOffRetrieve(),
+    builder:(BuildContext context, AsyncSnapshot snapshot) {
+      if(snapshot.data == null){
+        return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             StatusDataBox(Icons.toys, '쿨링 팬',0),
@@ -399,21 +404,45 @@ class _MainPageState extends State<MainPage> {
             StatusDataBox(Icons.child_care, '영양제',2),
             StatusDataBox(Icons.flash_on,   '전원',3),
           ],
-        ),
+        );
+    }
+      else{
+        print(snapshot.data.data);
+        isbuttonTouched[0] = snapshot.data['fan'];
+        isbuttonTouched[1] = snapshot.data['led'];
+        isbuttonTouched[2] = snapshot.data['nutrition'];
+        isbuttonTouched[3] = snapshot.data['power'];
+         return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+        StatusDataBox(Icons.toys, '쿨링 팬',0),
+        StatusDataBox(Icons.lightbulb_outline, 'LED 조명',1),
+        StatusDataBox(Icons.child_care, '영양제',2),
+        StatusDataBox(Icons.flash_on,   '전원',3),
+        ],
+        );
+        }
+        }
+    ),
       ],
     );
   }
 
   Widget StatusDataBox(IconData icon,String description,int idx) {
-
+    List<Color> colors = [Colors.white,style.mainBlue];
     return GestureDetector(
-      onTap: null,
+      onTap: (){
+        setState(() {
+          isbuttonTouched[idx] = !isbuttonTouched[idx];
+          onOffUpdate(idx,isbuttonTouched[idx]);
+        });
+      },
       child: Container(
           width: 90,
           //margin: EdgeInsets.only(top:7.5),
           padding: EdgeInsets.only(top: 18,bottom: 18,),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: isbuttonTouched[idx]?colors[1]:colors[0],
             borderRadius: BorderRadius.all(Radius.circular(10)),
             boxShadow: [
               BoxShadow(
@@ -426,9 +455,9 @@ class _MainPageState extends State<MainPage> {
           ),
           child: Column(
             children: <Widget>[
-              Icon(icon,color: style.mainBlue,size: 40,),
+              Icon(icon,color:isbuttonTouched[idx]?colors[0]:colors[1],size: 40,),
               SizedBox(height: 5,),
-              Text(description,style: TextStyle(color: style.mainBlue,fontSize: 10),),
+              Text(description,style: TextStyle(color: isbuttonTouched[idx]?colors[0]:colors[1],fontSize: 10),),
             ],
           )
       ),

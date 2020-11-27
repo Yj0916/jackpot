@@ -52,9 +52,9 @@ class _GraphPageState extends State<GraphPage> {
                   reportInfo.add(parseText(value));
                 });
                 return Container(
-                  margin: EdgeInsets.only(top:110,left: 20,right: 20),
+                  margin: EdgeInsets.only(top:80,left: 20,right: 20),
                     child : AspectRatio(
-                      aspectRatio: 1,
+                      aspectRatio: 0.8,
                       child: Card(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
                         color: Colors.white,

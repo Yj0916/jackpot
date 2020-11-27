@@ -139,3 +139,20 @@ Future<DocumentSnapshot> reportRetrieve() async{
 List<String> parseText(String text){
   return text.split(',');
 }
+
+void onOffUpdate(int idx,bool status) async{
+  List<String> stringList = ["fan","led","nutrition","power"];
+  final databaseReference = Firestore.instance;
+  await databaseReference.collection("PlantData")
+      .document("SystemOnOff")
+      .updateData({
+    stringList[idx]:status
+  });
+}
+
+
+Future<DocumentSnapshot> onOffRetrieve() async{
+  final databaseReference = Firestore.instance;
+  var future = await databaseReference.collection("PlantData").document("SystemOnOff").get();
+  return future;
+}

@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'jackPot',
+        debugShowCheckedModeBanner: false,
       home: IndexPage(),
       routes: {
         '/search' : (context)=>PlantRegister(),
