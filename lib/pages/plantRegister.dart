@@ -65,20 +65,24 @@ class _PlantRegisterState extends State<PlantRegister> {
                         ),
                         minimumChars: 1,
                         onItemFound: (PlantInfo plant, int index) {
-                          return ListTile(
-                            title: Text(plant.plantName),
-                            subtitle: Text(plant.plantCode),
-                            leading: Image.network(
-                              'http://www.nongsaro.go.kr/' +
-                                  plant.rtnFileCours +
-                                  "/" +
-                                  plant.rtnStreFileNm,
-                              width: 80,
-                              height: 80,
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              title: Text(plant.plantName),
+                              leading: Container(
+                                child: Image.network(
+                                  'http://www.nongsaro.go.kr/' +
+                                      plant.rtnFileCours +
+                                      "/" +
+                                      plant.rtnStreFileNm,
+                                  width: 80,
+                                  height: 80,
+                                ),
+                              ),
+                              onTap: (){
+                                Navigator.pushNamed(context, '/select',arguments: plant);
+                              },
                             ),
-                            onTap: (){
-                              Navigator.pushNamed(context, '/select',arguments: plant);
-                            },
                           );
                         }),
                   ),

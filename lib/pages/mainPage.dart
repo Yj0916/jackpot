@@ -20,6 +20,7 @@ class _MainPageState extends State<MainPage> {
   int temp = 26;
   int humidity = 81;
   int dust = 13;
+  int soil_humidity = 81;
   List<bool> isbuttonTouched = [false,false,false,false];
   @override
   Widget build(BuildContext context) {
@@ -241,15 +242,15 @@ class _MainPageState extends State<MainPage> {
                         Column(children: <Widget>[
                           Row(
                             children: <Widget>[
-                              Image.asset('images/Co2.png',width: 30.0,
+                              Image.asset('images/waterdrop.png',width: 25.0,
                                 fit: BoxFit.fill,
                               ),
                               SizedBox(width: 5,),
-                              Text('미세먼지',style: TextStyle(fontSize: 12,color: style.greyText),),
+                              Text('토양습도',style: TextStyle(fontSize: 12,color: style.greyText),),
                             ],
                           ),
                           SizedBox(height: 3,),
-                          NumberData(dust,'㎍/m³')
+                          NumberData(soil_humidity,'%')
                         ],),
                         Column(children: <Widget>[
                           Row(
@@ -285,9 +286,10 @@ class _MainPageState extends State<MainPage> {
                 ),7.5,7.5);
               }
               else{
-                waterlevel =  snapshot.data['waterLevel'];
-                humidity = snapshot.data['humidity'];
-                temp = snapshot.data['temperature'];
+                waterlevel =  int.parse(snapshot.data['waterLevel']);
+                humidity = int.parse(snapshot.data['humidity']);
+                temp = int.parse(snapshot.data['temperature']);
+                soil_humidity = int.parse(snapshot.data['soilMoisture']);
                 return DataBox(Column(
                   children: <Widget>[
                     Text('JackPot 상태',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
@@ -298,15 +300,15 @@ class _MainPageState extends State<MainPage> {
                         Column(children: <Widget>[
                           Row(
                             children: <Widget>[
-                              Image.asset('images/Co2.png',width: 30.0,
+                              Image.asset('images/waterdrop.png',width: 25.0,
                                 fit: BoxFit.fill,
                               ),
                               SizedBox(width: 5,),
-                              Text('미세먼지',style: TextStyle(fontSize: 12,color: style.greyText),),
+                              Text('토양습도',style: TextStyle(fontSize: 12,color: style.greyText),),
                             ],
                           ),
                           SizedBox(height: 3,),
-                          NumberData(dust,'㎍/m³')
+                          NumberData(soil_humidity,'%')
                         ],),
                         Column(children: <Widget>[
                           Row(
@@ -367,10 +369,10 @@ class _MainPageState extends State<MainPage> {
                 ),7.5,7.5);
               }
               else{
-                waterlevel =  snapshot.data['waterLevel'];
-                humidity = snapshot.data['humidity'];
-                temp = snapshot.data['temperature'];
-
+                waterlevel =  int.parse(snapshot.data['waterLevel']);
+                humidity = int.parse(snapshot.data['humidity']);
+                temp = int.parse(snapshot.data['temperature']);
+                soil_humidity = int.parse(snapshot.data['soilMoisture']);
                 return DataBox(Column(
                   children: <Widget>[
                     Row(

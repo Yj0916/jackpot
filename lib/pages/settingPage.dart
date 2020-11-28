@@ -165,7 +165,7 @@ class _SettingPageState extends State<SettingPage> {
                         ),
                         child:SfSlider(
                           min: 0.0,
-                          max: 5.0,
+                          max: 4.0,
                           interval: 1,
                           value: ledLevel,
                           showLabels: true,
